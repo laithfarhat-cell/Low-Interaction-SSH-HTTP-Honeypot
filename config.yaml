@@ -1,0 +1,30 @@
+ssh:
+  enabled: true
+  host: 0.0.0.0
+  port: 2222
+  host_key: keys/ssh_host_rsa_key
+  banner: SSH-2.0-OpenSSH_8.9p1 Ubuntu-3ubuntu0.6
+  tarpit_delay: 1.5
+  fake_shell: false
+  max_connections: 64
+  session_timeout: 60
+http:
+  enabled: true
+  host: 0.0.0.0
+  port: 8080
+  max_connections: 64
+  timeout: 10
+  max_body_bytes: 65536
+storage:
+  database: data/honeypot.db
+  json_log: data/honeypot_events.json
+  rotate_bytes: 10485760
+  backup_count: 5
+webhook:
+  enabled: false
+  # Use an environment variable, never commit webhook tokens.
+  url_env: HONEYPOT_WEBHOOK_URL
+  format: discord  # discord or telegram (URL must include bot token; set chat_id)
+  chat_id: ''
+  min_interval: 30
+  queue_size: 32
